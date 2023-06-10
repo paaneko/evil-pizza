@@ -1,7 +1,12 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
+import { Exo } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const exo = Exo({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-exo',
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'Next Pizza',
@@ -11,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${exo.variable} font-sans`}>{children}</body>
     </html>
   );
 }
