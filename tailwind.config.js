@@ -25,10 +25,11 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-exo)'],
+        sans: ['var(--font-lato)'],
       },
     },
     colors: {
+      white: '#FFFFFF',
       'light-yellow': '#F4ECDF',
       goldenrod: '#FCB302',
       'hot-red': '#F43127',
