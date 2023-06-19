@@ -1,8 +1,12 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
+import { baseApi } from '@shared/api';
+import { rootReducer } from './rootReducer';
 
 export function makeStore() {
   return configureStore({
-    reducer: {},
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(baseApi.middleware),
   });
 }
 

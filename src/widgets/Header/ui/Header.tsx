@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react';
 import { Logo } from '@shared/ui/Logo';
+import Link from 'next/link';
 
 type Props = {
   rightContentSlot: ReactNode;
@@ -12,8 +13,12 @@ export function Header({ rightContentSlot }: Props) {
         <Logo whiteText={false} />
         <nav>
           <ul className="flex space-x-3 text-lg font-semibold cursor-pointer">
-            <li>Pizza</li>
-            <li>Drinks</li>
+            <Link href="/">
+              <li>Pizza</li>
+            </Link>
+            <Link href="/test">
+              <li>Drinks</li>
+            </Link>
             <li>Desserts</li>
           </ul>
         </nav>

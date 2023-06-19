@@ -4,6 +4,15 @@ declare global {
    */
 
   /**
+   * 🔗 nukeapp
+   * ✅ DX Best Practice
+   * Use branded type to entity id to
+   * don't to be confused with other identifiers
+   */
+
+  export type Brand<K, T> = K & { [_brand]: T };
+
+  /**
    * Type aliases
    */
   export type Phone = string;
@@ -17,6 +26,8 @@ declare global {
   export type Id = number;
 
   export type Path = string;
+
+  export type Slug = string;
 
   /**
    * 🔗 nukeapp
