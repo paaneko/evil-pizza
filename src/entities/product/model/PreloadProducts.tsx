@@ -1,45 +1,44 @@
 'use client';
 
 import { useAppDispatch } from '@shared/model';
-import store from '@app/appStore';
 import { setProducts } from './slice';
-import { ProductType } from './types';
+import { ProductDto } from '../api/types';
 
 type Props = {
-  serverSideProducts: ProductType[];
+  serverSideProducts: ProductDto[];
 };
 
 /**
- * 💀💀💀 БУДЬ ВНИМАТЕЛЕН
+ * 💀💀💀 PAY ATTENTION
+ * ⚠️ Probably Fake Info
  *
  *
- * После вызова этой функции на сервере эта функция вызываеться чтобы заполнить store
- * на сервере и пре-рендерить список продуктов
- *  @@INIT Redux Store with initState: {data: [], firstRender: false}
+ * After calling this function on the server,
+ * this function is called to fill the store on the server and pre-render the list of products
+ * @@INIT Redux Store with initState: {data: []}
  *
- * ‼️ВНИМАНИЕ
+ * ‼️WARNING
  *
- * После того как NEXT JS вызовет все функции,
- * тоесть РЕНДЕР ВСЕХ КОМПОНЕНТОВ ПРИЛОЖЕНИЯ ПОИЗОЙДЁТ ОДИН РАЗ,
- * ХУКИ useEffect(() => {}) вызываться на сервере НЕ БУДУТ!!!
- * @@AFTER ALL fun() calls, Redux Store with initState: {data: [{...}, ...], firstRender: true}
+ * After NEXT JS calls all functions, i.e. RENDER OF ALL APPLICATION COMPONENTS SHOULD CALL ONCE,
+ * the useEffect() => {}) hooks will NOT be called on the server!!!
+ * @@AFTER ALL fun() calls, Redux Store with initState: {data: [{...}, ...]}
  *
- * НО НА КЛИЕНТ ОТПРАВИТЬСЯ ТОЛЬКО HTML-файл (HTML DOM и СЕРИАЛИЗИРОВАНАЯ ДАТА внутри <script/> tags )
+ * BUT ONLY the HTML file (HTML DOM and SERIALIZED DATE inside <script/> tags ) is sent to the client.
  * @see src/app/page.tsx
  *
  *
  * <html>
- *    //вся разметка вместе с продуктами
+ *    // all the markings along with the products
  *    <div>
  *      <div> ProductCard <div>
  *      <div> ProductCard <div>
  *       ...
  *    </div>
- *      // Данные код находится в сгенерированном HTML-файле после пре-рендера на сервере
- *      // и может быть воспроизведен только во время выполнения приложения.
- *      // Каждый элемент в массиве представляет собой набор инструкций для загрузки конкретного скрипта или ресурса.
+ *      // This code is located in the generated HTML file after the pre-rendering on the server
+ *      // and can only be played at runtime.
+ *      // Each element in the array is a set of instructions for loading a particular script or resource.
  *    <script>
- *      // Сериализированая дата пропса этой функции serverSideProducts
+ *      // The serialized props date of this serverSideProducts function
  *      self.__next_f.push({ serverSideProducts: [{...}, ...]})
  *    </script>
  *    <script>
@@ -51,13 +50,14 @@ type Props = {
  *      ...
  * </html>
  *
- *  После того как клиент получил HTML-файле БЕЗ JavaScript, Redux Store, React и всех библиотек
- *  В клиент начинают загружаться файлы .js в которых содержиться React, React DOM, Redux Store и тд
- *  После загрузки .js файлов React начинает Hydration:
- *    1. @@INIT Redux Store with initState: {data: [], firstRender: false}
- *    2. Синхронизация React DOM c browser DOM
+ *  After the client received the HTML file WITHOUT JavaScript, Redux Store, React and all libraries,
+ *  and mapped it like FCP (First Contentful Paint)
+ *  The client starts loading .js files that contain React, React DOM, Redux Store, etc.
+ *  After loading the .js files, React starts Hydration:
+ *    1. @@INIT Redux Store with initState: {data: []}
+ *    2. React DOM synchronization with browser DOM
  *    3. Attach React components into a server-rendered browser DOM nodes
- *    4. Setting productg into store.products: {data: [{...}, ...], firstRender: true}
+ *    4. Setting products into store.products: {data: [{...}, ...]}
  *
  *  TODO finish this doc PreloadProducts
  *
@@ -67,18 +67,33 @@ type Props = {
 export function PreloadProducts({ serverSideProducts }: Props) {
   const dispatch = useAppDispatch();
   /**
-   * Во время первого рендера на сервере и во время гидрации занчение firstRender: false
-   * После во время гидрации эта функция будет вызвана
+   * ⚒️ Not working
+   * There will have to be a feature that does not refresh the table when pages change
+   *
+   * 💔 Problem
+   * When you navigate between pages next js every transition
+   * sends updated data to the client and because of this re-hydration occurs.
+   * That is, the table which was before the page transition is overwritten by the new data from serverSideProducts.
+   * That is, if the user has configured the product (selected the size, etc.), then when passing between pages,
+   * this configuration will reset to default values
+   *
+   *
+   * 💖 Solution
+   * Make logic that checks if there is already data in the repository.
+   * If so, change only the values that are responsible for the price, except for the configuration.
+   * WITHOUT USING useEffect()
+   *
+   * ✨ Variant
+   *            HYDRATION BUG (NOT WORKING)
+   * if (!store.getState().product.firstRender) {
+   *   dispatch(setFirstRender());
+   *   dispatch(setProducts(serverSideProducts));
+   * }
+   *
+   * TODO find a solution
    */
-  if (!store.getState().product.firstRender) {
-    dispatch(setProducts(serverSideProducts));
-  }
-  console.log(
-    'PreloadProducts call',
-    serverSideProducts,
-    'State',
-    store.getState().product.firstRender
-  );
+
+  dispatch(setProducts(serverSideProducts));
 
   return null;
 }

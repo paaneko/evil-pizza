@@ -1,22 +1,21 @@
 import { HomeTemplate } from '@templates/home';
 import { PreloadProducts } from '@entities/product/model/PreloadProducts';
-import { mapProduct, ProductDto, ProductType } from '@entities/product';
+import { ProductDto } from '@entities/product';
 
 /**
- *  У этого подхода есть несколько проблем:
- *  1. В HTML-находиться доп ресурсы для HYDRATION,
- *  и из-за этого финальный размер document будет
- *  в 2 раза больше
+ *  NEXT JS SSR has several problems:
+ *  1. In HTML there are additional resources for HYDRATION,
+ *  and because of this the final size of the document will be twice as big
  *
  *  2. TTI > FCP
- *     (FCP) => Время первого отображения запрашиваемого содержимого.
- *     (TTI) => Момент времени, в который страница становится интерактивной,
- *     закрепляются все события и т. д. (finish HYDRATION).
+ *     (FCP) => Time of the first display of the requested content.
+ *     (TTI) => The point in time at which the page becomes interactive,
+ *     all events are fixed, etc. (finish HYDRATION).
  *
- *     Промежуток между этими состояниями может составлять 1-6 с
- *     (зависит от скорости интернета и можности PC)
- *     И из-за этого у пользователя не будут работать кнопки на сайте,
- *     которые используют js до момента TTI
+ *     The interval between these states can be 1-6 s
+ *     (depends on Internet speed and PC capability)
+ *     And because of this the user will not have access to the React features,
+ *     like Button toggle, etc. Until the page will be fully hydrated (TTI)
  *
  *   TODO finish doc about SRR disadvantages
  */
@@ -25,32 +24,29 @@ type Response = {
   data: ProductDto[];
 };
 
-async function getProducts(): Promise<ProductType[]> {
+async function getProducts(): Promise<Response> {
   console.log('BeforeHome call\\n');
 
   const resData = await fetch('http://localhost/api/products/pizza', {
     cache: 'no-cache',
-  })
-    .then<Response>((res) => res.json())
-    .then<ProductType[]>((res) =>
-      res.data.map((productDto: ProductDto) => mapProduct(productDto))
-    );
+  });
 
   console.log('After Home call\\n', resData);
-  return resData;
+  return resData.json();
 }
 
 export default async function Home() {
   const resData = await getProducts();
   /**
-   * Этот fetch() выполниться только на сервере и результат работы будет доступен
-   * во время рендеринга страницы на сервере через пропс serverSideProducts, а после
-   * результат внутри serverSideProducts сериализируеться и отправиться на клиент как chunk
+   * This fetch() will only be executed on the server and the result
+   * will be available when the page is rendered on the server through
+   * the serverSideProducts props and then the result inside serverSideProducts
+   * will be serialized and sent to the client inside the <script> tag
    */
 
   return (
     <>
-      <PreloadProducts serverSideProducts={resData} />
+      <PreloadProducts serverSideProducts={resData.data} />
       <HomeTemplate />
     </>
   );
