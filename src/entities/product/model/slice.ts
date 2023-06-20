@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductId, ProductType, SizeSpecId } from './types';
-import { ProductDto } from '../api/types';
-import { mapProduct } from '../lib/mapProduct';
 
 type ProductStateType = {
   data: ProductType[];
@@ -20,18 +18,10 @@ export const productSlice = createSlice({
      * @see src/entities/model/PreloadProducts.tsx
      * TODO Find a replacement for this method that does not break hydration
      */
-    setProducts(state, action: PayloadAction<ProductDto[]>) {
-      /**
-       * ⚠️
-       * Map Dto has to be used here,
-       * because if you transform inside `fetch()` via .then((p) => p.map())
-       * there is an hydration error
-       * TODO Find out why the error occurs
-       * @see src/app/page.tsx
-       */
+    setProducts(state, action: PayloadAction<ProductType[]>) {
       return {
         ...state,
-        data: action.payload.map((productDto) => mapProduct(productDto)),
+        data: action.payload,
       };
     },
     changeProductSize(

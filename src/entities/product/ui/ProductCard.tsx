@@ -24,8 +24,6 @@ export const ProductCard = React.memo((props: Props) => {
       })
     );
   };
-
-  console.log('ProductCard ', id, 'call');
   return (
     <div className="w-[280px] h-[400px]">
       <div className="">

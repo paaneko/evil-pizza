@@ -2,10 +2,10 @@
 
 import { useAppDispatch } from '@shared/model';
 import { setProducts } from './slice';
-import { ProductDto } from '../api/types';
+import { ProductType } from './types';
 
 type Props = {
-  serverSideProducts: ProductDto[];
+  serverSideProducts: ProductType[];
 };
 
 /**
@@ -71,8 +71,8 @@ export function PreloadProducts({ serverSideProducts }: Props) {
    * There will have to be a feature that does not refresh the table when pages change
    *
    * 💔 Problem
-   * When you navigate between pages next js every transition
-   * sends updated data to the client and because of this re-hydration occurs.
+   * When you navigate between pages, this component every time re-render, call dispatch
+   * and set serverSideProducts data into storage
    * That is, the table which was before the page transition is overwritten by the new data from serverSideProducts.
    * That is, if the user has configured the product (selected the size, etc.), then when passing between pages,
    * this configuration will reset to default values
@@ -80,7 +80,6 @@ export function PreloadProducts({ serverSideProducts }: Props) {
    *
    * 💖 Solution
    * Make logic that checks if there is already data in the repository.
-   * If so, change only the values that are responsible for the price, except for the configuration.
    * WITHOUT USING useEffect()
    *
    * ✨ Variant

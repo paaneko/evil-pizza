@@ -1,6 +1,6 @@
 import { HomeTemplate } from '@templates/home';
 import { PreloadProducts } from '@entities/product/model/PreloadProducts';
-import { ProductDto } from '@entities/product';
+import { mapProduct, ProductDto, ProductType } from '@entities/product';
 
 /**
  *  NEXT JS SSR has several problems:
@@ -24,19 +24,7 @@ type Response = {
   data: ProductDto[];
 };
 
-async function getProducts(): Promise<Response> {
-  console.log('BeforeHome call\\n');
-
-  const resData = await fetch('http://localhost/api/products/pizza', {
-    cache: 'no-cache',
-  });
-
-  console.log('After Home call\\n', resData);
-  return resData.json();
-}
-
 export default async function Home() {
-  const resData = await getProducts();
   /**
    * This fetch() will only be executed on the server and the result
    * will be available when the page is rendered on the server through
@@ -44,9 +32,24 @@ export default async function Home() {
    * will be serialized and sent to the client inside the <script> tag
    */
 
+  const productsData = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/products/pizza`,
+    {
+      cache: 'no-cache',
+    }
+  )
+    .then<Response>((res) => res.json())
+    .then<ProductType[]>((data) =>
+      /**
+       * Transform Data from server and adding some necessary props
+       * for every product object
+       */
+      data.data.map((product) => mapProduct(product))
+    );
+
   return (
     <>
-      <PreloadProducts serverSideProducts={resData.data} />
+      <PreloadProducts serverSideProducts={productsData} />
       <HomeTemplate />
     </>
   );
