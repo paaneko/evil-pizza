@@ -77,3 +77,8 @@ interface SpecType {
   extraPrice: Penny;
   extraWeight: Gram;
 }
+export type GroupedProductType = {
+  categoryName: string;
+  products: ProductType[];
+  subCategoriesList: string[];
+};

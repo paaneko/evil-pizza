@@ -1,70 +1,52 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
-import { useAppDispatch } from '@shared/model';
-import { ProductType, SizeSpecId } from '../model/types';
-import { changeProductSize } from '../model/slice';
+import React, { type ReactNode } from 'react';
+import type { ProductType } from '../model/types';
+import { getIngredientString } from '../lib/getIngredientString';
 
 type Props = {
   product: ProductType;
+  sizeToggleSlot: ReactNode;
+  doughToggleSlot: ReactNode;
 };
 
-export const ProductCard = React.memo((props: Props) => {
-  const { product } = props;
-  const { id, name, selectedSizeId, sizeSpecs } = product;
+export const ProductCard = React.memo(
+  (props: Props) => {
+    const { product, sizeToggleSlot, doughToggleSlot } = props;
+    const { name, ingredients } = product;
 
-  const dispatch = useAppDispatch();
-
-  const selectProductSize = (sizeId: SizeSpecId) => {
-    dispatch(
-      changeProductSize({
-        productId: id,
-        selectedSize: sizeId,
-      })
+    return (
+      <div className="relative flex flex-col w-full h-full bg-white rounded-lg">
+        <div className="flex justify-center mt-2">
+          <Image width={250} height={250} src="/pizza.webp" alt="pizza" />
+        </div>
+        <div className="px-6 pt-4">
+          <h2 className="font-bold text-lg text-jet-black">{name}</h2>
+          <div className="text-jet-black/70 text-sm font-semibold">
+            <span>Ingredients: </span>
+            {getIngredientString(ingredients)}
+          </div>
+        </div>
+        <div className="px-6 py-4 mt-auto">
+          {doughToggleSlot && <div>{doughToggleSlot}</div>}
+          {sizeToggleSlot && <div className="mt-2">{sizeToggleSlot}</div>}
+          <div className="">{product.oldPrice}</div>
+        </div>
+      </div>
     );
-  };
-  return (
-    <div className="w-[280px] h-[400px]">
-      <div className="">
-        <Image width={250} height={250} src="/pizza.webp" alt="pizza" />
-      </div>
-      <h2 className="font-semibold text-2xl text-center">{name}</h2>
-      <div className="flex justify-between">
-        {sizeSpecs.map((item) => (
-          <button
-            onClick={() => {
-              selectProductSize(item.id);
-            }}
-            className={`flex-grow ${
-              selectedSizeId === item.id
-                ? 'bg-hot-red text-white'
-                : 'bg-light-yellow'
-            }`}
-            key={item.id}
-            type="button"
-          >
-            {item.name}
-          </button>
-        ))}
-      </div>
-      {/* {selectedDoughId && ( */}
-      {/*  <div className="flex justify-between pt-2"> */}
-      {/*    {doughSpecs.map((item) => ( */}
-      {/*      <button */}
-      {/*        className={`p-2 text-xl font-semibold flex-grow ${ */}
-      {/*          selectedDoughId === item.id */}
-      {/*            ? 'bg-hot-red text-white' */}
-      {/*            : 'bg-light-yellow' */}
-      {/*        }`} */}
-      {/*        key={item.id} */}
-      {/*        type="button" */}
-      {/*      > */}
-      {/*        {item.name} */}
-      {/*      </button> */}
-      {/*    ))} */}
-      {/*  </div> */}
-      {/* )} */}
-    </div>
-  );
-});
+  },
+  (prevProps, nextProps) => {
+    /**
+     * 🪄 Re-render Optimization
+     * ⚠️ Probably Bad Practice
+     *
+     * Props comparison function
+     *
+     * If product: ProductType object has changed,
+     * then you need to call Render Slots to update the information if not,
+     * then we can suppose that user do not change this card and no re-render is needed
+     */
+    return prevProps.product === nextProps.product;
+  }
+);

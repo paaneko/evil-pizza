@@ -2,10 +2,10 @@
 
 import { useAppDispatch } from '@shared/model';
 import { setProducts } from './slice';
-import { ProductType } from './types';
+import type { GroupedProductType } from './types';
 
 type Props = {
-  serverSideProducts: ProductType[];
+  serverSideProducts: GroupedProductType[];
 };
 
 /**

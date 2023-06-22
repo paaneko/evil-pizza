@@ -30,6 +30,7 @@ module.exports = {
     },
     colors: {
       white: '#FFFFFF',
+      'dark-white': '#F8F8F8',
       'light-yellow': '#F4ECDF',
       goldenrod: '#FCB302',
       'hot-red': '#F43127',

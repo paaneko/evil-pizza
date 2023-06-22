@@ -26,14 +26,18 @@ export default function RootLayout({
     <AppStoreProvider>
       <html lang="en">
         {/* TODO create card Slot component */}
-        <body className={`${lato.variable} font-sans`}>
-          <header>
-            <Header rightContentSlot={<span>Card slot</span>} />
-          </header>
-          {children}
-          <footer>
-            <Footer />
-          </footer>
+        <body>
+          <div
+            className={`${lato.variable} font-sans flex flex-col min-h-screen`}
+          >
+            <header>
+              <Header rightContentSlot={<span>Card slot</span>} />
+            </header>
+            <main>{children}</main>
+            <footer className="mt-auto">
+              <Footer />
+            </footer>
+          </div>
         </body>
       </html>
     </AppStoreProvider>

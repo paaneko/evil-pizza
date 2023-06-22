@@ -1,6 +1,6 @@
 import { HomeTemplate } from '@templates/home';
-import { PreloadProducts } from '@entities/product/model/PreloadProducts';
-import { mapProduct, ProductDto, ProductType } from '@entities/product';
+import { PreloadProducts, groupProducts, mapProduct } from '@entities/product';
+import type { GroupedProductType, ProductDto } from '@entities/product';
 
 /**
  *  NEXT JS SSR has several problems:
@@ -33,18 +33,18 @@ export default async function Home() {
    */
 
   const productsData = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/products/pizza`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/products`,
     {
       cache: 'no-cache',
     }
   )
     .then<Response>((res) => res.json())
-    .then<ProductType[]>((data) =>
+    .then<GroupedProductType[]>((data) =>
       /**
        * Transform Data from server and adding some necessary props
        * for every product object
        */
-      data.data.map((product) => mapProduct(product))
+      groupProducts(data.data.map((product) => mapProduct(product)))
     );
 
   return (

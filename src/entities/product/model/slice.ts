@@ -1,8 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProductId, ProductType, SizeSpecId } from './types';
+import type {
+  DoughSpecId,
+  GroupedProductType,
+  ProductId,
+  SizeSpecId,
+} from './types';
 
 type ProductStateType = {
-  data: ProductType[];
+  data: GroupedProductType[];
+};
+
+type ChangeProductSpec = {
+  productId: ProductId;
+  categoryIndex: number;
 };
 
 const initialState: ProductStateType = {
@@ -18,7 +28,18 @@ export const productSlice = createSlice({
      * @see src/entities/model/PreloadProducts.tsx
      * TODO Find a replacement for this method that does not break hydration
      */
-    setProducts(state, action: PayloadAction<ProductType[]>) {
+    setProducts(state, action: PayloadAction<GroupedProductType[]>) {
+      /**
+       * ⚠️ Probably Fake Info
+       * The first use of immer in @redux/toolkit
+       * -> state.data = action.payload
+       * Here we are clearly mutating the state of the store and because of his immer,
+       * can trace it and make it immutable
+       */
+
+      /**
+       * And this time I construct a new state value yourself and return it
+       */
       return {
         ...state,
         data: action.payload,
@@ -26,26 +47,30 @@ export const productSlice = createSlice({
     },
     changeProductSize(
       state,
-      action: PayloadAction<{ productId: ProductId; selectedSize: SizeSpecId }>
+      action: PayloadAction<ChangeProductSpec & { selectedSize: SizeSpecId }>
     ) {
-      if (state.data)
-        // Construct a new array immutably
-        // "Mutate" the existing state to save the new array
-        /**
-         * ⚠️ Probably not immutable
-         * TODO Check if it's true
-         */
-        state.data = state.data.map((product) => {
-          if (product.id === action.payload.productId) {
-            return {
-              ...product,
-              selectedSizeId: action.payload.selectedSize,
-            };
-          }
-          return product;
-        });
+      const { productId, categoryIndex, selectedSize } = action.payload;
+
+      state.data[categoryIndex].products.forEach((product) => {
+        if (product.id === productId) {
+          product.selectedSizeId = selectedSize;
+        }
+      });
+    },
+    changeProductDough(
+      state,
+      action: PayloadAction<ChangeProductSpec & { selectedDough: DoughSpecId }>
+    ) {
+      const { productId, categoryIndex, selectedDough } = action.payload;
+
+      state.data[categoryIndex].products.forEach((product) => {
+        if (product.id === productId) {
+          product.selectedDoughId = selectedDough;
+        }
+      });
     },
   },
 });
 
-export const { setProducts, changeProductSize } = productSlice.actions;
+export const { setProducts, changeProductSize, changeProductDough } =
+  productSlice.actions;
