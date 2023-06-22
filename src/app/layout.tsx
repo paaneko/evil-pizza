@@ -36,6 +36,7 @@ export default function RootLayout({
             <main>{children}</main>
             <footer className="mt-auto">
               <Footer />
+              <div id="toppings-modal" className="relative z-50" />
             </footer>
           </div>
         </body>

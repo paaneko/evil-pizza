@@ -9,11 +9,13 @@ type Props = {
   product: ProductType;
   sizeToggleSlot: ReactNode;
   doughToggleSlot: ReactNode;
+  productModalButtonSlot: ReactNode;
 };
 
 export const ProductCard = React.memo(
   (props: Props) => {
-    const { product, sizeToggleSlot, doughToggleSlot } = props;
+    const { product, sizeToggleSlot, doughToggleSlot, productModalButtonSlot } =
+      props;
     const { name, ingredients } = product;
 
     return (
@@ -29,7 +31,8 @@ export const ProductCard = React.memo(
           </div>
         </div>
         <div className="px-6 py-4 mt-auto">
-          {doughToggleSlot && <div>{doughToggleSlot}</div>}
+          {productModalButtonSlot && <div>{productModalButtonSlot}</div>}
+          {doughToggleSlot && <div className="mt-2">{doughToggleSlot}</div>}
           {sizeToggleSlot && <div className="mt-2">{sizeToggleSlot}</div>}
           <div className="">{product.oldPrice}</div>
         </div>
