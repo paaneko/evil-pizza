@@ -4,7 +4,7 @@ import { ProductCard } from '@entities/product';
 import { useAppSelector } from '@shared/model';
 import { SizeToggle } from '@features/product/sizeToggle';
 import { DoughToggle } from '@features/product/doughToggle';
-import { AdjustToppingsModalButton } from '../../../entities/adjustToppingsModal';
+import { AdjustToppingsModalButton } from '@entities/adjustToppingsModal';
 import Image from 'next/image';
 import React from 'react';
 
