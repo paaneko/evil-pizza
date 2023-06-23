@@ -7,6 +7,7 @@ import { DoughToggle } from '@features/product/doughToggle';
 import { AdjustToppingsModalButton } from '@entities/adjustToppingsModal';
 import Image from 'next/image';
 import React from 'react';
+import { RemoveIngredientsList } from '@features/product/removeIngredients';
 
 export function ProductList() {
   const groupedProducts = useAppSelector((store) => store.product.data);
@@ -53,14 +54,22 @@ export function ProductList() {
                               src="/pizza.webp"
                               alt="pizza"
                             />
-                            <div className="mt-5 text-center font-bold text-lg text-jet-black">
+                            <div className="mt-5 text-center font-bold text-2xl text-jet-black">
                               {product.name}
                             </div>
                           </>
                         }
                         sizeToggleSlot={renderSizeToggleSlot}
                         doughToggleSlot={renderDoughToggleSlot}
-                        removeIngredientsSlot={undefined}
+                        removeIngredientsSlot={
+                          product.ingredients ? (
+                            <RemoveIngredientsList
+                              ingredients={product.ingredients}
+                              categoryIndex={categoryIndex}
+                              productId={product.id}
+                            />
+                          ) : undefined
+                        }
                         addToppingsSlot={undefined}
                       />
                     ) : undefined

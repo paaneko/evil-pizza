@@ -27,7 +27,9 @@ export function AdjustToppingsModal(
       <div className="modal-grid-template p-12 z-30 w-[1084px] h-[800px] bg-white rounded-3xl">
         <div className="flex items-center flex-col">
           {imageSlot && <div>{imageSlot}</div>}
-          {removeIngredientsSlot && <div>{removeIngredientsSlot}</div>}
+          {removeIngredientsSlot && (
+            <div className="w-full">{removeIngredientsSlot}</div>
+          )}
         </div>
         <div className="flex-grow">
           <div className="font-bold text-3xl text-center text-jet-black">

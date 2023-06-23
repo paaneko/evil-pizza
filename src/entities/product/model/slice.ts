@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type {
   DoughSpecId,
   GroupedProductType,
+  IndigrientId,
   ProductId,
   SizeSpecId,
 } from './types';
@@ -69,8 +70,30 @@ export const productSlice = createSlice({
         }
       });
     },
+    deleteIngredientToggle(
+      state,
+      action: PayloadAction<
+        ChangeProductSpec & { selectedIngredient: IndigrientId }
+      >
+    ) {
+      const { productId, categoryIndex, selectedIngredient } = action.payload;
+
+      state.data[categoryIndex].products.forEach((product) => {
+        if (product.id === productId) {
+          product.ingredients.forEach((ingr) => {
+            if (ingr.id === selectedIngredient) {
+              ingr.excluded = !ingr.excluded;
+            }
+          });
+        }
+      });
+    },
   },
 });
 
-export const { setProducts, changeProductSize, changeProductDough } =
-  productSlice.actions;
+export const {
+  setProducts,
+  changeProductSize,
+  changeProductDough,
+  deleteIngredientToggle,
+} = productSlice.actions;

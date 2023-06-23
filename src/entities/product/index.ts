@@ -22,6 +22,7 @@ export {
   setProducts,
   changeProductSize,
   changeProductDough,
+  deleteIngredientToggle,
   productSlice,
 } from './model/slice';
 export { useProductsByCategoryQuery } from './api/productApi';
