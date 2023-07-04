@@ -1,6 +1,7 @@
-import { HomeTemplate } from '@templates/home';
 import { PreloadProducts, groupProducts, mapProduct } from '@entities/product';
 import type { GroupedProductType, ProductDto } from '@entities/product';
+import { ProductList } from '@widgets/ProductList';
+import { FilterBar } from '@widgets/FilterBar';
 
 /**
  *  NEXT JS SSR has several problems:
@@ -50,7 +51,14 @@ export default async function Home() {
   return (
     <>
       <PreloadProducts serverSideProducts={productsData} />
-      <HomeTemplate />
+      <div className="bg-dark-white">
+        <div className="container flex">
+          <ProductList />
+          <div className="relative">
+            <FilterBar />
+          </div>
+        </div>
+      </div>
     </>
   );
 }
