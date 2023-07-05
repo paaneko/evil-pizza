@@ -1,8 +1,8 @@
 'use client';
 
+import type { GroupedProductType } from '@entities/product';
 import { useAppDispatch } from '@shared/model';
-import { setProducts } from './slice';
-import type { GroupedProductType } from './types';
+import { setProducts } from '@features/adjustProduct';
 
 type Props = {
   serverSideProducts: GroupedProductType[];

@@ -1,7 +1,8 @@
-import { PreloadProducts, groupProducts, mapProduct } from '@entities/product';
+import { groupProducts, mapProduct } from '@entities/product';
 import type { GroupedProductType, ProductDto } from '@entities/product';
 import { ProductList } from '@widgets/ProductList';
 import { FilterBar } from '@widgets/FilterBar';
+import { PreloadProducts } from './PreloadProducts';
 
 /**
  *  NEXT JS SSR has several problems:

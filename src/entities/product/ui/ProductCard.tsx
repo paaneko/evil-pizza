@@ -7,15 +7,12 @@ import { getIngredientString } from '../lib/getIngredientString';
 
 type Props = {
   product: ProductType;
-  sizeToggleSlot: ReactNode;
-  doughToggleSlot: ReactNode;
-  productModalButtonSlot: ReactNode;
+  middle: ReactNode;
 };
 
 export const ProductCard = React.memo(
   (props: Props) => {
-    const { product, sizeToggleSlot, doughToggleSlot, productModalButtonSlot } =
-      props;
+    const { product, middle } = props;
     const { name, ingredients } = product;
 
     return (
@@ -31,9 +28,7 @@ export const ProductCard = React.memo(
           </div>
         </div>
         <div className="px-6 py-4 mt-auto">
-          {productModalButtonSlot && <div>{productModalButtonSlot}</div>}
-          {doughToggleSlot && <div className="mt-2">{doughToggleSlot}</div>}
-          {sizeToggleSlot && <div className="mt-2">{sizeToggleSlot}</div>}
+          {middle}
           <div className="">{product.oldPrice}</div>
         </div>
       </div>

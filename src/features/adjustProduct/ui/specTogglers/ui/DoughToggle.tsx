@@ -1,36 +1,16 @@
-import type {
-  DoughSpecId,
-  DoughSpecType,
-  ProductId,
-  SizeSpecId,
-} from '@entities/product';
-import { changeProductDough } from '@entities/product';
+import type { SizeSpecId } from '@entities/product';
 import { useAppDispatch } from '@shared/model';
+import { changeProductDough } from '../../../model/slice';
+import { useAdjustProductContext } from '../../../model/AdjustProductContext';
 
-type Props = {
-  doughSpecs: DoughSpecType[];
-  productId: ProductId;
-  selectedDoughId: DoughSpecId;
-  categoryIndex: number;
-};
-
-/**
- * Blah-Blah-Blah, Don't Repeat Yourself ...
- * I don't care, I'm too lazy to pass types from entitie to shared
- */
-
-export function DoughToggle({
-  doughSpecs,
-  selectedDoughId,
-  categoryIndex,
-  productId,
-}: Props) {
+export function DoughToggle() {
   const dispatch = useAppDispatch();
+  const { product, categoryIndex } = useAdjustProductContext();
 
   const selectProductDough = (doughId: SizeSpecId) => {
     dispatch(
       changeProductDough({
-        productId,
+        productId: product.id,
         selectedDough: doughId,
         categoryIndex,
       })
@@ -45,13 +25,13 @@ export function DoughToggle({
       className="w-full h-12 flex justify-evenly bg-dark-white rounded-lg space-x-1.5 px-2"
       role="group"
     >
-      {doughSpecs.map((spec) => (
+      {product.doughSpecs.map((spec) => (
         <button
           key={spec.id}
           type="button"
           onClick={() => selectProductDough(spec.id)}
           className={`w-full my-1.5 flex justify-center items-center text-sm rounded font-semibold text-jet-black select-none ${
-            selectedDoughId === spec.id && activeClass
+            product.selectedDoughId === spec.id && activeClass
           }`}
         >
           <span>{spec.name}</span>

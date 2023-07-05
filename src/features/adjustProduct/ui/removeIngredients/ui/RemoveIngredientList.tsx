@@ -1,29 +1,17 @@
-import type {
-  IndigrientId,
-  IndigrientType,
-  ProductId,
-} from '@entities/product';
-import { deleteIngredientToggle } from '@entities/product';
+import type { IndigrientId } from '@entities/product';
 import { useAppDispatch } from '@shared/model';
-import { RemoveIngredientButton } from './RemoveIngredientButton';
+import { RemoveIngredientItem } from './RemoveIngredientItem';
+import { useAdjustProductContext } from '../../../model/AdjustProductContext';
+import { deleteIngredientToggle } from '../../../model/slice';
 
-type Props = {
-  productId: ProductId;
-  ingredients: IndigrientType[];
-  categoryIndex: number;
-};
-
-export function RemoveIngredientsList({
-  ingredients,
-  categoryIndex,
-  productId,
-}: Props) {
+export function RemoveIngredientList() {
   const dispatch = useAppDispatch();
+  const { product, categoryIndex } = useAdjustProductContext();
 
   const toggleIngredient = (selectedIngredient: IndigrientId) => {
     dispatch(
       deleteIngredientToggle({
-        productId,
+        productId: product.id,
         categoryIndex,
         selectedIngredient,
       })
@@ -37,10 +25,10 @@ export function RemoveIngredientsList({
         Remove ingredients:
       </h4>
       <div className="flex flex-col space-y-2.5 px-5 max-h-[270px] overflow-y-auto">
-        {ingredients
+        {product.ingredients
           .filter((ingr) => !ingr.required)
           .map((ingr) => (
-            <RemoveIngredientButton
+            <RemoveIngredientItem
               key={ingr.id}
               label={ingr.name}
               isExcluded={ingr.excluded}

@@ -18,12 +18,4 @@ export type { ProductDto } from './api/types';
 export { groupProducts } from './lib/groupProducts';
 export { mapProduct } from './lib/mapProduct';
 export { ProductCard } from './ui/ProductCard';
-export {
-  setProducts,
-  changeProductSize,
-  changeProductDough,
-  deleteIngredientToggle,
-  productSlice,
-} from './model/slice';
 export { useProductsByCategoryQuery } from './api/productApi';
-export { PreloadProducts } from './model/PreloadProducts';

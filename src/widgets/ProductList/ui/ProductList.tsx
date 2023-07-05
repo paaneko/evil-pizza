@@ -2,12 +2,8 @@
 
 import { ProductCard } from '@entities/product';
 import { useAppSelector } from '@shared/model';
-import { SizeToggle } from '@features/product/sizeToggle';
-import { DoughToggle } from '@features/product/doughToggle';
-import { AdjustToppingsModalButton } from '@entities/adjustToppingsModal';
-import Image from 'next/image';
 import React from 'react';
-import { RemoveIngredientsList } from '@features/product/removeIngredients';
+import AdjustProduct from '@features/adjustProduct';
 
 export function ProductList() {
   const groupedProducts = useAppSelector((store) => store.product.data);
@@ -21,62 +17,29 @@ export function ProductList() {
           </h4>
           <div className="grid grid-cols-3 gap-2">
             {group.products.map((product) => {
-              const renderSizeToggleSlot = product.selectedDoughId ? (
-                <DoughToggle
-                  productId={product.id}
-                  selectedDoughId={product.selectedDoughId}
-                  doughSpecs={product.doughSpecs}
-                  categoryIndex={categoryIndex}
-                />
-              ) : undefined;
-
-              const renderDoughToggleSlot = product.selectedSizeId ? (
-                <SizeToggle
-                  productId={product.id}
-                  selectedSizeId={product.selectedSizeId}
-                  sizeSpecs={product.sizeSpecs}
-                  categoryIndex={categoryIndex}
-                />
-              ) : undefined;
-
               return (
                 <ProductCard
                   key={product.id}
                   product={product}
-                  productModalButtonSlot={
-                    product.ingredients || product.toppings ? (
-                      <AdjustToppingsModalButton
-                        imageSlot={
-                          <>
-                            <Image
-                              width={250}
-                              height={250}
-                              src="/pizza.webp"
-                              alt="pizza"
-                            />
-                            <div className="mt-5 text-center font-bold text-2xl text-jet-black">
-                              {product.name}
-                            </div>
-                          </>
-                        }
-                        sizeToggleSlot={renderSizeToggleSlot}
-                        doughToggleSlot={renderDoughToggleSlot}
-                        removeIngredientsSlot={
-                          product.ingredients ? (
-                            <RemoveIngredientsList
-                              ingredients={product.ingredients}
-                              categoryIndex={categoryIndex}
-                              productId={product.id}
-                            />
-                          ) : undefined
-                        }
-                        addToppingsSlot={undefined}
-                      />
-                    ) : undefined
+                  middle={
+                    <AdjustProduct
+                      product={product}
+                      categoryIndex={categoryIndex}
+                    >
+                      <AdjustProduct.Modal>
+                        <AdjustProduct.Modal.Left>
+                          <AdjustProduct.Modal.Info />
+                          <AdjustProduct.RemoveIngredients />
+                        </AdjustProduct.Modal.Left>
+                        <AdjustProduct.Modal.Right>
+                          <AdjustProduct.Size />
+                          <AdjustProduct.Dough />
+                        </AdjustProduct.Modal.Right>
+                      </AdjustProduct.Modal>
+                      <AdjustProduct.Size />
+                      <AdjustProduct.Dough />
+                    </AdjustProduct>
                   }
-                  // by default can be null
-                  sizeToggleSlot={renderSizeToggleSlot}
-                  doughToggleSlot={renderDoughToggleSlot}
                 />
               );
             })}

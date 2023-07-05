@@ -4,7 +4,7 @@ type Props = {
   label: string;
 };
 
-export function RemoveIngredientButton(props: Props) {
+export function RemoveIngredientItem(props: Props) {
   const { toggle, label, isExcluded } = props;
   return (
     <button

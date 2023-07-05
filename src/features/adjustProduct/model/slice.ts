@@ -5,7 +5,7 @@ import type {
   IndigrientId,
   ProductId,
   SizeSpecId,
-} from './types';
+} from '@entities/product/model/types';
 
 type ProductStateType = {
   data: GroupedProductType[];

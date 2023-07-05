@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { AdjustToppingsModal } from './AdjustToppingsModal';
-import { ModalSlotsType } from '../model/types';
+import { ReactNode, useState } from 'react';
+import { Modal } from '../lib/Modal';
+import { ModalRight } from '../lib/ModalRight';
+import { ModalLeft } from '../lib/ModalLeft';
+import { ProductInfo } from '../../productInfo/ui/ProductInfo';
 
-export function AdjustToppingsModalButton({
-  doughToggleSlot,
-  sizeToggleSlot,
-  removeIngredientsSlot,
-  addToppingsSlot,
-  imageSlot,
-}: ModalSlotsType) {
+type Props = {
+  children: ReactNode;
+};
+
+function AdjustProductModal({ children }: Props) {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const closeModal = () => {
@@ -30,16 +30,13 @@ export function AdjustToppingsModalButton({
       >
         Adjust Toppings
       </button>
-      {openModal && (
-        <AdjustToppingsModal
-          imageSlot={imageSlot}
-          sizeToggleSlot={sizeToggleSlot}
-          doughToggleSlot={doughToggleSlot}
-          addToppingsSlot={addToppingsSlot}
-          removeIngredientsSlot={removeIngredientsSlot}
-          close={closeModal}
-        />
-      )}
+      {openModal && <Modal close={closeModal}>{children}</Modal>}
     </>
   );
 }
+
+AdjustProductModal.Right = ModalRight;
+AdjustProductModal.Left = ModalLeft;
+AdjustProductModal.Info = ProductInfo;
+
+export default AdjustProductModal;
