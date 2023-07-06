@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { formatPrice, ToppingId } from '@entities/product';
+import { WeightIndicator } from '@shared/ui/WeightIndicator';
 
 type Props = {
   id: Id;
@@ -27,8 +28,8 @@ export function ToppingCard({
       onClick={() => toggle(id)}
       className={`${activeClass} p-2 relative flex flex-col justify-between rounded-lg items-center bg-dark-white cursor-pointer`}
     >
-      <div className="absolute top-[8px] right-[7px] text-xs font-semibold bg-hot-red text-white rounded-full px-1.5 py-0.5">
-        {weight}g
+      <div className="absolute top-[8px] right-[7px]">
+        <WeightIndicator weight={weight} size="small" />
       </div>
       <Image
         className="pt-3 pointer-events-none"

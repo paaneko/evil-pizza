@@ -2,8 +2,10 @@
 
 import Image from 'next/image';
 import React, { type ReactNode } from 'react';
+import { WeightIndicator } from '@shared/ui/WeightIndicator';
 import type { ProductType } from '../model/types';
 import { getIngredientString } from '../lib/getIngredientString';
+import { calculateProductWeight } from '../model/calculateProductWeight';
 
 type Props = {
   product: ProductType;
@@ -17,7 +19,13 @@ export const ProductCard = React.memo(
 
     return (
       <div className="relative flex flex-col w-full h-full bg-white rounded-lg">
-        <div className="flex justify-center mt-2">
+        <div className="absolute top-4 right-4">
+          <WeightIndicator
+            weight={calculateProductWeight(product)}
+            size="big"
+          />
+        </div>
+        <div className="flex justify-center pt-4">
           <Image width={250} height={250} src="/pizza.webp" alt="pizza" />
         </div>
         <div className="px-6 pt-4">
