@@ -2,7 +2,7 @@
 
 import type { GroupedProductType } from '@entities/product';
 import { useAppDispatch } from '@shared/model';
-import { setProducts } from '@features/adjustProduct';
+import { setProducts } from '@features/product/adjustProduct';
 
 type Props = {
   serverSideProducts: GroupedProductType[];

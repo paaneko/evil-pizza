@@ -1,4 +1,4 @@
-import AdjustProduct from './ui/AdjustProduct';
+export { AdjustProduct } from './ui/AdjustProduct';
 
 export {
   setProducts,
@@ -8,5 +8,3 @@ export {
   addToppingToggle,
   productSlice,
 } from './model/slice';
-
-export default AdjustProduct;

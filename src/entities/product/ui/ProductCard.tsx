@@ -10,11 +10,13 @@ import { calculateProductWeight } from '../model/calculateProductWeight';
 type Props = {
   product: ProductType;
   middle: ReactNode;
+  priceSlot: ReactNode;
+  addToCartSlot: ReactNode;
 };
 
 export const ProductCard = React.memo(
   (props: Props) => {
-    const { product, middle } = props;
+    const { product, middle, priceSlot, addToCartSlot } = props;
     const { name, ingredients } = product;
 
     return (
@@ -37,7 +39,10 @@ export const ProductCard = React.memo(
         </div>
         <div className="px-6 py-4 mt-auto">
           {middle}
-          <div className="">{product.oldPrice}</div>
+          <div className="flex justify-between pt-4">
+            {priceSlot}
+            {addToCartSlot}
+          </div>
         </div>
       </div>
     );

@@ -8,7 +8,7 @@ type Props = {
   children: ReactNode;
 };
 
-function AdjustProductModal({ children }: Props) {
+export function AdjustProductModal({ children }: Props) {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const closeModal = () => {
@@ -38,5 +38,3 @@ function AdjustProductModal({ children }: Props) {
 AdjustProductModal.Right = ModalRight;
 AdjustProductModal.Left = ModalLeft;
 AdjustProductModal.Info = ProductInfo;
-
-export default AdjustProductModal;

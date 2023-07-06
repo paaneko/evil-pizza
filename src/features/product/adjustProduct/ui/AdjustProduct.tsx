@@ -5,7 +5,7 @@ import { DoughToggle } from './specTogglers/ui/DoughToggle';
 import { SizeToggle } from './specTogglers/ui/SizeToggle';
 import { RemoveIngredientList } from './removeIngredients/ui/RemoveIngredientList';
 import { AddToppingList } from './addToppings/ui/AddToppingList';
-import AdjustProductModal from './adjustProductModal/ui/AdjustProductModal';
+import { AdjustProductModal } from './adjustProductModal/ui/AdjustProductModal';
 
 type Props = {
   product: ProductType;
@@ -13,7 +13,7 @@ type Props = {
   children: ReactNode;
 };
 
-function AdjustProduct({ product, categoryIndex, children }: Props) {
+export function AdjustProduct({ product, categoryIndex, children }: Props) {
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     <AdjustProductContext.Provider value={{ product, categoryIndex }}>
@@ -28,5 +28,3 @@ AdjustProduct.Size = SizeToggle;
 AdjustProduct.Modal = AdjustProductModal;
 AdjustProduct.RemoveIngredients = RemoveIngredientList;
 AdjustProduct.AddToppings = AddToppingList;
-
-export default AdjustProduct;
