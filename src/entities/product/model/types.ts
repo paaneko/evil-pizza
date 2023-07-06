@@ -68,7 +68,7 @@ export interface SizeSpecType extends SpecType {
   id: SizeSpecId;
   extraToppingsPrice: Penny;
   /* From Backend comes the value in percent */
-  extraToppingsWeightRate: string;
+  extraToppingsWeightRate: number;
 }
 
 interface SpecType {

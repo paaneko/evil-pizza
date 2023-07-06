@@ -9,6 +9,9 @@
   grid-column-gap: 20px;
   grid-row-gap: 0;
 }
+.grid-cols-4-fix {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
 .remove-scroll {
   --removed-body-scroll-bar-size: 17px;
 }

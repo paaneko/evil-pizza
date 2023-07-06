@@ -4,6 +4,7 @@ import AdjustProductContext from '../model/AdjustProductContext';
 import { DoughToggle } from './specTogglers/ui/DoughToggle';
 import { SizeToggle } from './specTogglers/ui/SizeToggle';
 import { RemoveIngredientList } from './removeIngredients/ui/RemoveIngredientList';
+import { AddToppingList } from './addToppings/ui/AddToppingList';
 import AdjustProductModal from './adjustProductModal/ui/AdjustProductModal';
 
 type Props = {
@@ -20,10 +21,12 @@ function AdjustProduct({ product, categoryIndex, children }: Props) {
     </AdjustProductContext.Provider>
   );
 }
+
 AdjustProduct.Dough = DoughToggle;
 AdjustProduct.Size = SizeToggle;
 
 AdjustProduct.Modal = AdjustProductModal;
 AdjustProduct.RemoveIngredients = RemoveIngredientList;
+AdjustProduct.AddToppings = AddToppingList;
 
 export default AdjustProduct;

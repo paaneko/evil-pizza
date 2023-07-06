@@ -5,6 +5,7 @@ export {
   changeProductSize,
   changeProductDough,
   deleteIngredientToggle,
+  addToppingToggle,
   productSlice,
 } from './model/slice';
 

@@ -5,6 +5,7 @@ import type {
   IndigrientId,
   ProductId,
   SizeSpecId,
+  ToppingId,
 } from '@entities/product/model/types';
 
 type ProductStateType = {
@@ -88,6 +89,22 @@ export const productSlice = createSlice({
         }
       });
     },
+    addToppingToggle(
+      state,
+      action: PayloadAction<ChangeProductSpec & { selectedTopping: ToppingId }>
+    ) {
+      const { productId, categoryIndex, selectedTopping } = action.payload;
+
+      state.data[categoryIndex].products.forEach((product) => {
+        if (product.id === productId) {
+          product.toppings.forEach((topping) => {
+            if (topping.id === selectedTopping) {
+              topping.selected = !topping.selected;
+            }
+          });
+        }
+      });
+    },
   },
 });
 
@@ -96,4 +113,5 @@ export const {
   changeProductSize,
   changeProductDough,
   deleteIngredientToggle,
+  addToppingToggle,
 } = productSlice.actions;

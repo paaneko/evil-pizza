@@ -34,8 +34,10 @@ export function ProductList() {
                         <AdjustProduct.Modal.Right>
                           <AdjustProduct.Size />
                           <AdjustProduct.Dough />
+                          <AdjustProduct.AddToppings />
                         </AdjustProduct.Modal.Right>
                       </AdjustProduct.Modal>
+
                       <AdjustProduct.Size />
                       <AdjustProduct.Dough />
                     </AdjustProduct>
