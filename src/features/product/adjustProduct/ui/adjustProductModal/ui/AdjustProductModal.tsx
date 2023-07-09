@@ -3,6 +3,7 @@ import { Modal } from '../lib/Modal';
 import { ModalRight } from '../lib/ModalRight';
 import { ModalLeft } from '../lib/ModalLeft';
 import { ProductInfo } from '../../productInfo/ui/ProductInfo';
+import { useAdjustProductContext } from '../../../model/AdjustProductContext';
 
 type Props = {
   children: ReactNode;
@@ -10,6 +11,8 @@ type Props = {
 
 export function AdjustProductModal({ children }: Props) {
   const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const { product } = useAdjustProductContext();
 
   const closeModal = () => {
     document.body.classList.remove('overflow-hidden');
@@ -21,6 +24,14 @@ export function AdjustProductModal({ children }: Props) {
     document.body.classList.add('overflow-hidden');
     document.body.classList.add('mr-[17px]');
   }
+
+  if (
+    product.toppings.length === 0 &&
+    product.ingredients.filter((ingr) => !ingr.required).length === 0
+  ) {
+    return null;
+  }
+
   return (
     <>
       <button

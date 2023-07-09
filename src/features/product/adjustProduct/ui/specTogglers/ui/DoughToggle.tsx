@@ -20,6 +20,10 @@ export function DoughToggle() {
   const activeClass =
     'text-white border-b-[3px] border-hot-red bg-goldenrod cursor-default hover:bg-none';
 
+  if (product.doughSpecs.length === 0) {
+    return null;
+  }
+
   return (
     <div
       className="w-full h-12 flex justify-evenly bg-dark-white rounded-lg space-x-1.5 px-2"
