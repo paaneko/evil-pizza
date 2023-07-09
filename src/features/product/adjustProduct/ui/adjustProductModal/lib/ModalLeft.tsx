@@ -13,5 +13,5 @@ ModalLeft.BottomSlot = function ModalBottomSlot({
 }: {
   children: ReactNode;
 }) {
-  return <div className="flex justify-between mt-auto">{children}</div>;
+  return <div className="flex justify-between pt-4 mt-auto">{children}</div>;
 };

@@ -18,6 +18,25 @@ export function RemoveIngredientList() {
     );
   };
 
+  // TODO Fix duplicate code
+  if (product.ingredients.filter((ingr) => !ingr.required).length === 0) {
+    return (
+      <>
+        <div className="border-hot-red w-full border mt-4" />
+        <h4 className="font-bold text text-jet-black my-4">
+          Remove ingredients:
+        </h4>
+        <div className="flex flex-col flex-grow items-center justify-center space-y-2.5 px-5 bg-dark-white rounded-lg">
+          <div className="text-4xl transform scale-150">😔</div>
+          <div className="font-bold text-xl pt-2 ">Regrettably</div>
+          <div className="font-semibold text-center">
+            There are no ingredients to remove
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <div className="border-hot-red w-full border mt-4" />
