@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { ProductType } from '@entities/product';
+import { ProductType } from '@entities/productCard';
 
 const AdjustProductContext = createContext<{
   product: ProductType;

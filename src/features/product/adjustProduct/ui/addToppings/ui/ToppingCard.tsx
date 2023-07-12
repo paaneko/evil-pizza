@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { formatPrice, ToppingId } from '@entities/product';
+import { formatPrice, ToppingId } from '@entities/productCard';
 import { WeightIndicator } from '@shared/ui/WeightIndicator';
 
 type Props = {

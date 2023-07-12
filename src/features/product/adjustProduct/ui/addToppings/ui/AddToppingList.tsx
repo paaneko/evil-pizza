@@ -1,10 +1,10 @@
 import { useAppDispatch } from '@shared/model';
-import type { ToppingId } from '@entities/product';
+import type { ToppingId } from '@entities/productCard';
+import { addToppingToggle } from '@entities/productCard';
 import { useAdjustProductContext } from '../../../model/AdjustProductContext';
 import { ToppingCard } from './ToppingCard';
 import { calculateToppingPrice } from '../model/calculateToppingPrice';
 import { calculateToppingWeight } from '../model/calculateToppingWeight';
-import { addToppingToggle } from '../../../model/slice';
 
 export function AddToppingList() {
   const { product, categoryIndex } = useAdjustProductContext();

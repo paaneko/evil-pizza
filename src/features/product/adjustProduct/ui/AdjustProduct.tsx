@@ -1,4 +1,4 @@
-import type { ProductType } from '@entities/product';
+import type { ProductType } from '@entities/productCard';
 import type { ReactNode } from 'react';
 import AdjustProductContext from '../model/AdjustProductContext';
 import { DoughToggle } from './specTogglers/ui/DoughToggle';

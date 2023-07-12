@@ -21,3 +21,12 @@ export { ProductCard } from './ui/ProductCard';
 export { useProductsByCategoryQuery } from './api/productApi';
 export { formatPrice } from './lib/formatPrice';
 export { calculateProductWeight } from './model/calculateProductWeight';
+
+export {
+  setProducts,
+  changeProductSize,
+  changeProductDough,
+  deleteIngredientToggle,
+  addToppingToggle,
+  productSlice,
+} from './model/slice';

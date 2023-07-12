@@ -1,4 +1,4 @@
-import { formatPrice, ProductType } from '@entities/product';
+import { formatPrice, ProductType } from '@entities/productCard';
 import { calculatePrice } from '../model/calculatePrice';
 import { calculatePriceWithDiscount } from '../model/calculatePriceWithDiscount';
 

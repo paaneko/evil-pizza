@@ -1,7 +1,7 @@
-import { DoughSpecType, ProductType } from '@entities/product/model/types';
+import type { DoughSpecType, ProductType } from '@entities/productCard';
 
 /**
- * In the future, the logic of calculating the price of a discount product may change
+ * In the future, the logic of calculating the price of a discount productCard may change
  */
 
 export function calculatePriceWithDiscount(product: ProductType) {

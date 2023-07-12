@@ -1,4 +1,4 @@
-import { DoughSpecType, ProductType } from '@entities/product/model/types';
+import type { DoughSpecType, ProductType } from '@entities/productCard';
 
 export function calculatePrice(product: ProductType) {
   const currentSize = product.sizeSpecs.find(

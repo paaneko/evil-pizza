@@ -1,8 +1,8 @@
 'use client';
 
-import type { GroupedProductType } from '@entities/product';
+import type { GroupedProductType } from '@entities/productCard';
 import { useAppDispatch } from '@shared/model';
-import { setProducts } from '@features/product/adjustProduct';
+import { setProducts } from '@entities/productCard';
 
 type Props = {
   serverSideProducts: GroupedProductType[];
@@ -74,7 +74,7 @@ export function PreloadProducts({ serverSideProducts }: Props) {
    * When you navigate between pages, this component every time re-render, call dispatch
    * and set serverSideProducts data into storage
    * That is, the table which was before the page transition is overwritten by the new data from serverSideProducts.
-   * That is, if the user has configured the product (selected the size, etc.), then when passing between pages,
+   * That is, if the user has configured the productCard (selected the size, etc.), then when passing between pages,
    * this configuration will reset to default values
    *
    *
@@ -84,7 +84,7 @@ export function PreloadProducts({ serverSideProducts }: Props) {
    *
    * ✨ Variant
    *            HYDRATION BUG (NOT WORKING)
-   * if (!store.getState().product.firstRender) {
+   * if (!store.getState().productCard.firstRender) {
    *   dispatch(setFirstRender());
    *   dispatch(setProducts(serverSideProducts));
    * }

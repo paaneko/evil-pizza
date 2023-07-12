@@ -1,6 +1,6 @@
-import type { SizeSpecId } from '@entities/product';
+import type { SizeSpecId } from '@entities/productCard';
 import { useAppDispatch } from '@shared/model';
-import { changeProductDough } from '../../../model/slice';
+import { changeProductDough } from '@entities/productCard';
 import { useAdjustProductContext } from '../../../model/AdjustProductContext';
 
 export function DoughToggle() {

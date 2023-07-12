@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { WeightIndicator } from '@shared/ui/WeightIndicator';
-import { calculateProductWeight } from '@entities/product';
+import { calculateProductWeight } from '@entities/productCard';
 import { useAdjustProductContext } from '../../../model/AdjustProductContext';
 
 export function ProductInfo() {

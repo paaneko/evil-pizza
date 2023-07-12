@@ -54,7 +54,7 @@ export const ProductCard = React.memo(
      *
      * Props comparison function
      *
-     * If product: ProductType object has changed,
+     * If productCard: ProductType object has changed,
      * then you need to call Render Slots to update the information if not,
      * then we can suppose that user do not change this card and no re-render is needed
      */

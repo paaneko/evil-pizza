@@ -1,8 +1,8 @@
-import type { IndigrientId } from '@entities/product';
+import type { IndigrientId } from '@entities/productCard';
 import { useAppDispatch } from '@shared/model';
+import { deleteIngredientToggle } from '@entities/productCard';
 import { RemoveIngredientItem } from './RemoveIngredientItem';
 import { useAdjustProductContext } from '../../../model/AdjustProductContext';
-import { deleteIngredientToggle } from '../../../model/slice';
 
 export function RemoveIngredientList() {
   const dispatch = useAppDispatch();

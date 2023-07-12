@@ -1,4 +1,4 @@
-import { DoughSpecType, ProductType } from './types';
+import type { DoughSpecType, ProductType } from './types';
 
 export function calculateProductWeight(product: ProductType) {
   const currentSize = product.sizeSpecs.find(

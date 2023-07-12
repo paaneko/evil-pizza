@@ -1,7 +1,7 @@
-import type { SizeSpecId } from '@entities/product';
+import type { SizeSpecId } from '@entities/productCard';
 import { useAppDispatch } from '@shared/model';
+import { changeProductSize } from '@entities/productCard';
 import { useAdjustProductContext } from '../../../model/AdjustProductContext';
-import { changeProductSize } from '../../../model/slice';
 
 export function SizeToggle() {
   const dispatch = useAppDispatch();

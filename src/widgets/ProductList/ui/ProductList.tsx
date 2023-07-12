@@ -1,10 +1,10 @@
 'use client';
 
-import { ProductCard } from '@entities/product';
+import { ProductCard } from '@entities/productCard';
 import { useAppSelector } from '@shared/model';
 import React from 'react';
-import { ProductPrice } from '@features/product/productPrice';
 import { AdjustProduct } from '@features/product/adjustProduct';
+import { ProductPrice } from '@features/product/productPrice';
 
 export function ProductList() {
   const groupedProducts = useAppSelector((store) => store.product.data);

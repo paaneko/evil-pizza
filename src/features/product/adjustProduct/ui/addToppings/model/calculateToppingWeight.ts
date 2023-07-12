@@ -1,4 +1,4 @@
-import { ProductType } from '@entities/product';
+import type { ProductType } from '@entities/productCard';
 
 export function calculateToppingWeight(
   product: ProductType,

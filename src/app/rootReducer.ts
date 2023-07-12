@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { baseApi } from '@shared/api';
-import { productSlice } from '@features/product/adjustProduct';
+import { productSlice } from '@entities/productCard';
 
 export const rootReducer = combineReducers({
   [baseApi.reducerPath]: baseApi.reducer,

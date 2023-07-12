@@ -25,7 +25,7 @@ import type {
  * I only need to modify the name in the DTO object on the frontend,
  * rather than in all the places where it is used.
  *
- * 2. For the logic of selecting current toppings or ingredients for each product,
+ * 2. For the logic of selecting current toppings or ingredients for each productCard,
  * I will need an additional property like "selected: true | false" for each object.
  * This is where DTO comes in handy, as it allows me to easily incorporate such properties.
  */

@@ -1,5 +1,5 @@
-import { groupProducts, mapProduct } from '@entities/product';
-import type { GroupedProductType, ProductDto } from '@entities/product';
+import { groupProducts, mapProduct } from '@entities/productCard';
+import type { GroupedProductType, ProductDto } from '@entities/productCard';
 import { ProductList } from '@widgets/ProductList';
 import { FilterBar } from '@widgets/FilterBar';
 import { PreloadProducts } from './PreloadProducts';
@@ -44,7 +44,7 @@ export default async function Home() {
     .then<GroupedProductType[]>((data) =>
       /**
        * Transform Data from server and adding some necessary props
-       * for every product object
+       * for every productCard object
        */
       groupProducts(data.data.map((product) => mapProduct(product)))
     );
