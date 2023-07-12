@@ -100,5 +100,6 @@ export function mapProduct(dto: ProductDto): ProductType {
     sizeSpecs: dto.sizeSpecs.map((item) => mapSizeSpec(item)),
     ingredients: dto.ingredients.map((item) => mapIngredient(item)),
     toppings: dto.toppings.map((item) => mapTopping(item)),
+    validateHash: dto.validateHash,
   };
 }

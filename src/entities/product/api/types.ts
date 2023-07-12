@@ -25,6 +25,7 @@ export type ProductDto = {
   sizeSpecs: SizeSpecDto[];
   ingredients: IndigrientDto[];
   toppings: ToppingsDto[];
+  validateHash: string;
 };
 
 export type IndigrientDto = {
@@ -46,7 +47,7 @@ export interface DoughSpecDto extends SpecDto {}
 export interface SizeSpecDto extends SpecDto {
   extraToppingsPrice: number;
   /* From Backend comes the value in percent */
-  extraToppingsWeightRate: string;
+  extraToppingsWeightRate: number;
 }
 
 interface SpecDto {

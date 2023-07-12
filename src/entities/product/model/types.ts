@@ -42,6 +42,7 @@ export type ProductType = {
   sizeSpecs: SizeSpecType[];
   ingredients: IndigrientType[];
   toppings: ToppingsType[];
+  validateHash: string;
 };
 
 export type IndigrientType = {
