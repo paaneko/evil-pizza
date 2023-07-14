@@ -29,6 +29,10 @@ declare global {
 
   export type Slug = string;
 
+  export type Hash = string;
+
+  export type CartVersion = 'valid' | 'invalid';
+
   /**
    * 🔗 nukeapp
    * ⚠️ FSD

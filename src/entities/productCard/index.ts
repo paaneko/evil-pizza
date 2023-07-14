@@ -19,7 +19,6 @@ export { groupProducts } from './lib/groupProducts';
 export { mapProduct } from './lib/mapProduct';
 export { ProductCard } from './ui/ProductCard';
 export { useProductsByCategoryQuery } from './api/productApi';
-export { formatPrice } from './lib/formatPrice';
 export { calculateProductWeight } from './model/calculateProductWeight';
 
 export {

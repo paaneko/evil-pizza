@@ -5,6 +5,7 @@ import { useAppSelector } from '@shared/model';
 import React from 'react';
 import { AdjustProduct } from '@features/product/adjustProduct';
 import { ProductPrice } from '@features/product/productPrice';
+import { AddToCart } from '@features/cart';
 
 export function ProductList() {
   const groupedProducts = useAppSelector((store) => store.product.data);
@@ -33,9 +34,7 @@ export function ProductList() {
                           <AdjustProduct.RemoveIngredients />
                           <AdjustProduct.Modal.Left.BottomSlot>
                             <ProductPrice product={product} />
-                            <div className="p-3 bg-hot-red rounded-lg text-white font-semibold">
-                              Add To Card
-                            </div>
+                            <AddToCart product={product} />
                           </AdjustProduct.Modal.Left.BottomSlot>
                         </AdjustProduct.Modal.Left>
                         <AdjustProduct.Modal.Right>
@@ -50,11 +49,7 @@ export function ProductList() {
                     </AdjustProduct>
                   }
                   priceSlot={<ProductPrice product={product} />}
-                  addToCartSlot={
-                    <div className="p-3 bg-hot-red rounded-lg text-white font-semibold">
-                      Add To Card
-                    </div>
-                  }
+                  addToCartSlot={<AddToCart product={product} />}
                 />
               );
             })}

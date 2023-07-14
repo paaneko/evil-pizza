@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import { formatPrice, ToppingId } from '@entities/productCard';
+import { ToppingId } from '@entities/productCard';
 import { WeightIndicator } from '@shared/ui/WeightIndicator';
+import { formatPrice } from '@shared/lib';
 
 type Props = {
   id: Id;

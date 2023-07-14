@@ -1,4 +1,5 @@
-import { formatPrice, ProductType } from '@entities/productCard';
+import type { ProductType } from '@entities/productCard';
+import { formatPrice } from '@shared/lib';
 import { calculatePrice } from '../model/calculatePrice';
 import { calculatePriceWithDiscount } from '../model/calculatePriceWithDiscount';
 
