@@ -8,7 +8,7 @@ import { ProductToHashType } from '@entities/cart';
 export function mapProductToHash(product: ProductType): ProductToHashType {
   return {
     productId: product.id,
-    selectedSizeId: product.selectedSizeId ? product.selectedSizeId : null,
+    selectedSizeId: product.selectedSizeId,
     selectedDoughId: product.selectedDoughId ? product.selectedDoughId : null,
     removedIngredientsId: product.ingredients
       .filter((ingr) => ingr.excluded)

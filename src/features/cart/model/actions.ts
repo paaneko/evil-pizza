@@ -5,6 +5,7 @@ import {
   CartDto,
   invalidateVersion,
   mapCartDto,
+  removeOneProductCartItem,
 } from '@entities/cart';
 import { ProductCartItemType } from '@entities/productCartItem';
 
@@ -18,6 +19,7 @@ export const updateCartThunk = createAsyncThunk<
   ).unwrap();
 });
 
+// TODO add debounce to prevent multiple cart mutations
 const syncCart = (dispatch: AppDispatch, state: RootState) => {
   const cartDto = mapCartDto(state.cart);
   return dispatch(updateCartThunk(cartDto));
@@ -35,3 +37,13 @@ export const addOneCartItemThunk = createAsyncThunk<
     syncCart(dispatch as AppDispatch, getState());
   }
 );
+
+export const removeOneCartItemThunk = createAsyncThunk<
+  void,
+  { hash: Hash },
+  { state: RootState }
+>('cart/addOneCartItemThunk', async ({ hash }, { dispatch, getState }) => {
+  dispatch(removeOneProductCartItem({ hash }));
+  dispatch(invalidateVersion());
+  syncCart(dispatch as AppDispatch, getState());
+});

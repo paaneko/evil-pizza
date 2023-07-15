@@ -15,8 +15,12 @@ const initialState: CartStateType = {
   version: 'valid',
 };
 
-function createProductCartItem(product: ProductCartItemType): CartItemType {
+function createProductCartItem(
+  hash: Hash,
+  product: ProductCartItemType
+): CartItemType {
   return {
+    hash,
     product,
     quantity: 1,
   };
@@ -28,7 +32,7 @@ export const cartSlice = createSlice({
   reducers: {
     addOneProductCartItem(
       state,
-      action: PayloadAction<{ hash: string; item: ProductCartItemType }>
+      action: PayloadAction<{ hash: Hash; item: ProductCartItemType }>
     ) {
       const productInCart = state.cartItems[action.payload.hash];
 
@@ -36,6 +40,7 @@ export const cartSlice = createSlice({
         state.cartItems[action.payload.hash].quantity += 1;
       } else {
         state.cartItems[action.payload.hash] = createProductCartItem(
+          action.payload.hash,
           action.payload.item
         );
       }

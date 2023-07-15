@@ -17,6 +17,7 @@ export function ProductCartItem({
   removeProductCartItemSlot,
 }: Props) {
   const { product, quantity } = productCartItem;
+
   return (
     <div className="flex flex-auto justify-between items-center">
       <div className="flex items-center mr-10">{index}</div>
@@ -52,7 +53,7 @@ export function ProductCartItem({
           )}
         </div>
         <div className="flex flex-[2] items-center justify-center ">
-          {changeProductQuantitySlot} {quantity}
+          {changeProductQuantitySlot}
         </div>
         <div className="flex flex-[1] items-center">
           {product.discountTotalPrice ? (

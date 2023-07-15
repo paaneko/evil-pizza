@@ -7,6 +7,7 @@ import type {
 } from '@entities/productCard';
 
 export type CartItemType = {
+  hash: Hash;
   product: ProductCartItemType;
   quantity: number;
 };

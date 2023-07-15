@@ -5,7 +5,9 @@ import { mapProductCartItemToHash } from './mapProductCartItemToHash';
 
 export function mapCart(dto: CartResponseDto): CartType {
   const cartItems = dto.cartItems.reduce((acc: CartType['cartItems'], item) => {
-    acc[objectToHash(mapProductCartItemToHash(item.product)) as Hash] = {
+    const hash = objectToHash(mapProductCartItemToHash(item.product));
+    acc[hash as Hash] = {
+      hash,
       product: item.product,
       quantity: item.quantity,
     };
