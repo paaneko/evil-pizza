@@ -6,6 +6,7 @@ import {
   invalidateVersion,
   mapCartDto,
   removeOneProductCartItem,
+  removeProductCartItem,
 } from '@entities/cart';
 import { ProductCartItemType } from '@entities/productCartItem';
 
@@ -44,6 +45,16 @@ export const removeOneCartItemThunk = createAsyncThunk<
   { state: RootState }
 >('cart/addOneCartItemThunk', async ({ hash }, { dispatch, getState }) => {
   dispatch(removeOneProductCartItem({ hash }));
+  dispatch(invalidateVersion());
+  syncCart(dispatch as AppDispatch, getState());
+});
+
+export const removeProductCartItemThunk = createAsyncThunk<
+  void,
+  { hash: Hash },
+  { state: RootState }
+>('cart/addOneCartItemThunk', async ({ hash }, { dispatch, getState }) => {
+  dispatch(removeProductCartItem({ hash }));
   dispatch(invalidateVersion());
   syncCart(dispatch as AppDispatch, getState());
 });
