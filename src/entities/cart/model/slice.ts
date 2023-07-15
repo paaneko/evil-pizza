@@ -47,7 +47,7 @@ export const cartSlice = createSlice({
       }
 
       if (state.cartItems[action.payload.hash].quantity > 1) {
-        state.cartItems[action.payload.hash].quantity = -1;
+        state.cartItems[action.payload.hash].quantity -= 1;
       } else {
         delete state.cartItems[action.payload.hash];
       }
