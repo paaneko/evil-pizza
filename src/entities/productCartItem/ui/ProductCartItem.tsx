@@ -68,7 +68,7 @@ export function ProductCartItem({
           ) : (
             <div className="flex flex-col justify-center items-center">
               <div className="text-lg font-bold">
-                {formatPrice(product.totalPrice)}
+                {formatPrice(product.totalPrice * quantity)}
               </div>
             </div>
           )}
