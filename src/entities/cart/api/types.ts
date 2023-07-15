@@ -40,6 +40,7 @@ export type CartResponseDto = {
 };
 
 export type CartItemResponseDto = {
+  hash: string;
   product: ProductCartItemType;
   quantity: number;
 };

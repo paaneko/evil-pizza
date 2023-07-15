@@ -6,8 +6,8 @@ export function mapProductCartItemDto(
 ): ProductCartItemDto {
   return {
     productId: dto.productId,
-    selectedSizeId: dto.selectedSize ? dto.selectedSize.id : null,
-    selectedDoughId: dto.selectedDough ? dto.selectedDough.id : null,
+    selectedSizeId: dto.selectedSize.id,
+    selectedDoughId: dto.selectedDough?.id ? dto.selectedDough.id : null,
     removedIngredientsId: dto.removedIngredients.map((ingr) => ingr.id),
     selectedToppingsId: dto.selectedToppings.map((topping) => topping.id),
   };

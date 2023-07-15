@@ -29,7 +29,7 @@ export function AddToCart({ product }: Props) {
           selectedDough: product.selectedDoughId
             ? {
                 id: product.selectedDoughId,
-                name: product.sizeSpecs.find(
+                name: product.doughSpecs.find(
                   (dough) => dough.id === product.selectedDoughId
                 )!.name,
               }

@@ -11,9 +11,7 @@ export function mapProductCartItemToHash(
 ): ProductCartItemToHashType {
   return {
     productId: productCartItem.productId,
-    selectedSizeId: productCartItem.selectedSize
-      ? productCartItem.selectedSize.id
-      : null,
+    selectedSizeId: productCartItem.selectedSize.id,
     selectedDoughId: productCartItem.selectedDough
       ? productCartItem.selectedDough.id
       : null,

@@ -7,7 +7,7 @@ export const cartApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     cart: build.query({
       query: () => ({
-        url: `/cart/1`,
+        url: `cart/1`,
       }),
       providesTags: [CART_TAG],
       transformResponse: (res: CartResponseDto) => mapCart(res),

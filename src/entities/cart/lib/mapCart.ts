@@ -1,5 +1,5 @@
 import { objectToHash } from '@shared/lib';
-import type { CartType, ProductCartItemToHashType } from '../model/types';
+import type { CartType } from '../model/types';
 import type { CartResponseDto } from '../api/types';
 import { mapProductCartItemToHash } from './mapProductCartItemToHash';
 
