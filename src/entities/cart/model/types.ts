@@ -11,7 +11,7 @@ export type UserCartId = Brand<Id, 'UserCartId'>;
 
 export type CartType = {
   cartItems: Record<Hash, CartItemType>;
-  cartTotalPrice: number | null;
+  cartTotalPrice: number;
   userCartId: number | null;
   version: CartVersion;
 };

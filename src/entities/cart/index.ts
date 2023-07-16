@@ -22,5 +22,7 @@ export type {
   UserCartId,
 } from './model/types';
 
+export { selectTotalCartQuantity, selectTotalCartPrice } from './model/slice';
+
 export { mapCartDto } from './lib/mapCartDto';
 export { mapProductCartItemToHash } from './lib/mapProductCartItemToHash';

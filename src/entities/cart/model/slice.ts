@@ -3,6 +3,7 @@ import type {
   CartItemType,
   ProductCartItemType,
 } from '@entities/productCartItem';
+import type { RootState } from '@app/appStore';
 import { CartType } from './types';
 import { cartApi } from '../api/cartApi';
 
@@ -10,7 +11,7 @@ type CartStateType = CartType;
 
 const initialState: CartStateType = {
   cartItems: {},
-  cartTotalPrice: null,
+  cartTotalPrice: 0,
   userCartId: 1,
   version: 'valid',
 };
@@ -87,6 +88,18 @@ export const cartSlice = createSlice({
     );
   },
 });
+
+// TODO refactor code to use selectors instead (state) => state.cart
+
+export const selectTotalCartPrice = (state: RootState) => {
+  return state.cart.cartTotalPrice;
+};
+
+export const selectTotalCartQuantity = (state: RootState) => {
+  return Object.values(state.cart.cartItems).reduce((acc, item) => {
+    return acc + item.quantity;
+  }, 0);
+};
 
 export const {
   addOneProductCartItem,

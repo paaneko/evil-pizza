@@ -26,7 +26,12 @@ export function Header({ rightContentSlot }: Props) {
             <li>Desserts</li>
           </ul>
         </nav>
-        <div className="bg-hot-red">{rightContentSlot}</div>
+        <Link
+          href="/order/cart"
+          className="bg-hot-red text-white rounded-full w-[256px] py-4"
+        >
+          {rightContentSlot}
+        </Link>
       </div>
     </div>
   );
