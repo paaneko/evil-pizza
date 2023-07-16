@@ -20,7 +20,7 @@ export function Header({ rightContentSlot }: Props) {
             <Link href="/">
               <li>Pizza</li>
             </Link>
-            <Link href="/test">
+            <Link href="/">
               <li>Drinks</li>
             </Link>
             <li>Desserts</li>
