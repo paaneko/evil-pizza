@@ -33,6 +33,7 @@ export function ProductCartItem({
         <div className="flex flex-col flex-[7]">
           <div className="font-semibold text-xl mb-1">{product.name}</div>
           <div className="font-medium text-sm">
+            <span>{product.totalWeight}g, </span>
             <span>{product.selectedSize.name}</span>
             {product.selectedDough && (
               <span>, {product.selectedDough?.name}</span>
