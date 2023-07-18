@@ -2,8 +2,7 @@
 
 import { useAppSelector } from '@shared/model';
 import { ProductCartItem } from '@entities/productCartItem';
-import { ChangeProductQuantity } from '@features/cart/ui/changeProductQuantity/ui/ChangeProductQuantity';
-import { RemoveProductButton } from '@features/cart/ui/removeAllProducts/ui/RemoveProductButton';
+import { ChangeProductQuantity, RemoveProductButton } from '@features/cart';
 
 export default function Cart() {
   const cartData = useAppSelector((store) => store.cart.cartItems);
