@@ -35,6 +35,8 @@ module.exports = {
       goldenrod: '#FCB302',
       'hot-red': '#F43127',
       'jet-black': '#1A1A1A',
+      green: '#27f431',
+      gray: '#808080',
     },
   },
   plugins: [],

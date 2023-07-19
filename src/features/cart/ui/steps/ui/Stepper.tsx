@@ -1,0 +1,46 @@
+import './stepper.css';
+import { stepperConfig } from '../model/config';
+
+type Props = {
+  currentIndex: number;
+};
+
+function Checked() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="3"
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4.5 12.75l6 6 9-13.5"
+      />
+    </svg>
+  );
+}
+
+export function Stepper({ currentIndex }: Props) {
+  return (
+    <div className="flex justify-between ">
+      {stepperConfig.map((step) => (
+        <div
+          key={step.index}
+          className={`step-item flex-grow ${
+            step.index === currentIndex && 'active'
+          } ${step.index < currentIndex && 'complete'} `}
+        >
+          <div className="step">
+            {step.index < currentIndex ? <Checked /> : step.index}
+          </div>
+          <p className="font-bold text-lg">{step.label}</p>
+          <span className="font-medium">{step.description}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
