@@ -4,9 +4,13 @@ import { useAppSelector } from '@shared/model';
 import { ProductCartItem } from '@entities/productCartItem';
 import { ChangeProductQuantity, RemoveProductButton } from '@features/cart';
 import { Stepper } from '@features/cart/ui/steps/ui/Stepper';
+import { selectTotalCartPrice } from '@entities/cart';
+import Link from 'next/link';
+import { formatPrice } from '@shared/lib';
 
 export default function Cart() {
   const cartData = useAppSelector((store) => store.cart.cartItems);
+  const totalPrice = useAppSelector(selectTotalCartPrice);
   return (
     <div className="container">
       <div className="mt-4 ">
@@ -36,6 +40,25 @@ export default function Cart() {
               }
             />
           ))}
+        </div>
+      </section>
+      <section className="mt-6">
+        <div className="flex justify-between items-end">
+          <Link href="/">
+            <div className="text-center p-3 bg-goldenrod rounded-lg text-white font-semibold cursor-pointer">
+              Back to menu
+            </div>
+          </Link>
+          <div className="flex flex-col">
+            <div className="font-semibold">
+              Total price: {formatPrice(totalPrice)}
+            </div>
+            <Link href="/checkout">
+              <div className="mt-2 text-center px-14 py-3 bg-hot-red rounded-lg text-white font-semibold cursor-pointer">
+                Checkout
+              </div>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
