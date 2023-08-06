@@ -101,6 +101,10 @@ export const selectTotalCartQuantity = (state: RootState) => {
   }, 0);
 };
 
+export const getUserCartId = (state: RootState) => {
+  return state.cart.userCartId;
+};
+
 export const {
   addOneProductCartItem,
   removeOneProductCartItem,

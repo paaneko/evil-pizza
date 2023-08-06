@@ -53,7 +53,7 @@ export default function Cart() {
             <div className="font-semibold">
               Total price: {formatPrice(totalPrice)}
             </div>
-            <Link href="/checkout">
+            <Link href="/order/checkout">
               <div className="mt-2 text-center px-14 py-3 bg-hot-red rounded-lg text-white font-semibold cursor-pointer">
                 Checkout
               </div>

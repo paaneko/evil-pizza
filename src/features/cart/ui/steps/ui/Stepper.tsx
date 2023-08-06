@@ -23,7 +23,7 @@ function Checked() {
     </svg>
   );
 }
-
+// TODO maybe move to entities?
 export function Stepper({ currentIndex }: Props) {
   return (
     <div className="flex justify-between ">

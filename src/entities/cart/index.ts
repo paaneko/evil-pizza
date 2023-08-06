@@ -13,6 +13,7 @@ export type {
   CartDto,
   ProductCartItemDto,
   CartItemResponseDto,
+  DeliveryInfoType,
 } from './api/types';
 
 export type {
@@ -22,7 +23,18 @@ export type {
   UserCartId,
 } from './model/types';
 
-export { selectTotalCartQuantity, selectTotalCartPrice } from './model/slice';
+export {
+  selectTotalCartQuantity,
+  selectTotalCartPrice,
+  getUserCartId,
+} from './model/slice';
 
 export { mapCartDto } from './lib/mapCartDto';
 export { mapProductCartItemToHash } from './lib/mapProductCartItemToHash';
+
+export {
+  cartApi,
+  useCartQuery,
+  useUpdateCartMutation,
+  useCreateOrderMutation,
+} from './api/cartApi';

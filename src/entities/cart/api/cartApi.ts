@@ -1,6 +1,6 @@
 import { baseApi } from '@shared/api';
 import { CART_TAG } from '@shared/model';
-import { CartDto, CartResponseDto } from './types';
+import { CartDto, CartResponseDto, OrderResponseDto } from './types';
 import { mapCart } from '../lib/mapCart';
 
 export const cartApi = baseApi.injectEndpoints({
@@ -20,7 +20,15 @@ export const cartApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [CART_TAG],
     }),
+    createOrder: build.mutation<{}, { orderData: OrderResponseDto }>({
+      query: ({ orderData }) => ({
+        url: 'order',
+        method: 'POST',
+        body: orderData,
+      }),
+    }),
   }),
 });
 
-export const { useCartQuery, useUpdateCartMutation } = cartApi;
+export const { useCartQuery, useUpdateCartMutation, useCreateOrderMutation } =
+  cartApi;
