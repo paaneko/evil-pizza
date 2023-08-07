@@ -4,6 +4,7 @@ export {
   removeProductCartItem,
   clearCart,
   invalidateVersion,
+  removeUserCartId,
   cartSlice,
 } from './model/slice';
 

@@ -4,13 +4,15 @@ import { type ReactNode } from 'react';
 import { Logo } from '@shared/ui/Logo';
 import Link from 'next/link';
 import { useCartQuery } from '@entities/cart/api/cartApi';
+import { useAppSelector } from '@shared/model';
+import { getUserCartId } from '@entities/cart';
 
 type Props = {
   rightContentSlot: ReactNode;
 };
 
 export function Header({ rightContentSlot }: Props) {
-  useCartQuery(undefined, { skip: false });
+  useCartQuery(useAppSelector(getUserCartId), { skip: false });
   return (
     <div className="bg-light-yellow">
       <div className="container flex justify-between items-center py-4">

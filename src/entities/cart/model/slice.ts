@@ -12,8 +12,8 @@ type CartStateType = CartType;
 const initialState: CartStateType = {
   cartItems: {},
   cartTotalPrice: 0,
-  userCartId: 1,
-  version: 'valid',
+  userCartId: null,
+  version: 'invalid',
 };
 
 function createProductCartItem(
@@ -73,6 +73,10 @@ export const cartSlice = createSlice({
     invalidateVersion: (state) => {
       state.version = 'invalid';
     },
+    removeUserCartId: (state) => {
+      state.userCartId = null;
+      state.version = 'invalid';
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -111,4 +115,5 @@ export const {
   removeProductCartItem,
   clearCart,
   invalidateVersion,
+  removeUserCartId,
 } = cartSlice.actions;

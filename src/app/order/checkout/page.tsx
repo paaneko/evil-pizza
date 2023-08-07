@@ -2,7 +2,11 @@
 
 import { Stepper } from '@features/cart';
 import { useForm, type FieldErrors, type Control } from 'react-hook-form';
-import { getUserCartId, useCreateOrderMutation } from '@entities/cart';
+import {
+  getUserCartId,
+  removeUserCartId,
+  useCreateOrderMutation,
+} from '@entities/cart';
 import Link from 'next/link';
 import {
   ContactInfoForm,
@@ -17,11 +21,12 @@ import {
   AddressInfoForm,
 } from '@features/checkout/addressInfoForm';
 import type { DeliveryInfoType } from '@entities/cart';
-import { useAppSelector } from '@shared/model';
+import { useAppDispatch, useAppSelector } from '@shared/model';
 import { redirect } from 'next/navigation';
 
 // TODO add to each func name suffix Page
 export default function Checkout() {
+  const dispatch = useAppDispatch();
   const orderCartId = useAppSelector(getUserCartId);
   const [createOrder, { isError, isSuccess }] = useCreateOrderMutation();
 
@@ -34,7 +39,7 @@ export default function Checkout() {
     defaultValues: { paymentMethod: 'cash' },
   });
 
-  // TODO maybe make form feature?
+  // TODO maybe COMBINE INTO ONE feature?
   const onSubmit = (data: DeliveryInfoType) => {
     createOrder({
       orderData: {
@@ -46,6 +51,7 @@ export default function Checkout() {
   };
 
   if (isSuccess) {
+    dispatch(removeUserCartId());
     redirect('/order/status/success');
   }
 
