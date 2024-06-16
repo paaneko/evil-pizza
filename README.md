@@ -65,6 +65,10 @@ cp .env.example .env
 npm run dev
 ```
 
+## BackEnd Installation
+
+Go to [BackEnd](https://github.com/paaneko/evil-pizza-backend/) Installation guide
+
 ## License
 
 Licensed under the MIT license.
