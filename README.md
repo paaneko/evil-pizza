@@ -27,7 +27,7 @@ demo@gmail.com:root
 ```
 
 - [BackEnd Admin Panel](http://evil-pizza-backend.my.to/admin)
-- [FrontEnd](http://evil-pizza.my.to/admin)
+- [FrontEnd](http://evil-pizza.my.to)
 
 ## About project
 
